@@ -21,7 +21,6 @@ public class JdbcSongRepository implements SongRepository {
                     BeanPropertyRowMapper.newInstance(Song.class)
             );
         } catch(Exception e) {
-            System.out.println("Excepción en la query");
             return null;
         }
     }

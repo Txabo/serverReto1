@@ -13,6 +13,6 @@ public class SongServiceImpl implements  SongService{
 
     public List<Song> getAllSongs() {
         List<Song> songs = songRepository.getAllSongs();
-        return songs;
+        return (songs.isEmpty()) ? null : songs;
     }
 }
