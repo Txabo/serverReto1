@@ -1,8 +1,12 @@
 package com.example.serverReto1.favourite;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class JdbcFavouriteRepository implements FavouriteRepository {
@@ -11,8 +15,16 @@ public class JdbcFavouriteRepository implements FavouriteRepository {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public Favourite findById(long id) {
-        return null;
+    public List<Favourite> findByIdUser(long idUser) {
+        try {
+            return jdbcTemplate.query(
+                    "SELECT IdSong FROM favourites WHERE idUser = ?",
+                    BeanPropertyRowMapper.newInstance(Favourite.class),
+                    idUser
+            );
+        } catch (IncorrectResultSizeDataAccessException e) {
+            return null;
+        }
     }
 
     @Override
@@ -23,9 +35,9 @@ public class JdbcFavouriteRepository implements FavouriteRepository {
     }
 
     @Override
-    public int deleteById(long id) {
-        return jdbcTemplate.update("DELETE FROM favourites WHERE id = ?",
-                id
+    public int deleteById(Favourite favourite) {
+        return jdbcTemplate.update("DELETE FROM favourites WHERE idSong = ? AND idUser = ?",
+                favourite.getIdSong(), favourite.getIdUser()
         );
     }
 }
