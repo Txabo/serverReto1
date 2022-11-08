@@ -13,10 +13,10 @@ public class UserServiceImp implements UserService{
     @Override
     public int signIn(User user) {
         //List<String> userNames = getUserNames();
-        if(user.getUsername() != null && user.getUsername() != ""){
+        if(user.getUsername() != null && user.getUsername() != "" && user.getPassword() != null && user.getPassword() != "" && user.getEmail() != null && user.getEmail() != ""){
             return userRepository.signIn(user);
         }else{
-            return 0;
+            return 2;
         }
 
     }

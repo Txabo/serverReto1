@@ -1,6 +1,11 @@
 package com.example.serverReto1.user;
 
-public class User {
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+
+public class User implements UserDetails {
     private int id;
     private String username;
     private String firstname;
@@ -14,6 +19,11 @@ public class User {
         this.username = username;
     }
 
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public User(String username, String firstname, String lastnames, String email, String password) {
         this.username = username;
         this.firstname = firstname;
@@ -21,7 +31,29 @@ public class User {
         this.email = email;
         this.password = password;
     }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
     public int getId() {
         return id;
     }
@@ -61,6 +93,8 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+
 
     public String getPassword() {
         return password;
