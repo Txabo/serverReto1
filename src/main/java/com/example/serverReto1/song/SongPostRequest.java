@@ -1,37 +1,28 @@
 package com.example.serverReto1.song;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-
-public class Song {
-    private Long id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+public class SongPostRequest {
+    @NotNull
+    @NotEmpty
+    @NotBlank
     private String title;
+    @NotNull
+    @NotEmpty
+    @NotBlank
     private String author;
-    public String url;
+    @NotNull
+    @NotEmpty
+    @NotBlank
+    private String url;
 
-    public Song() {
-    }
+    public SongPostRequest() {}
 
-    public Song(Long id, String title, String author, String url) {
-        this.id = id;
+    public SongPostRequest(String title, String author, String url) {
         this.title = title;
         this.author = author;
         this.url = url;
-    }
-
-    public Song(String title, String author, String url) {
-        this.title = title;
-        this.author = author;
-        this.url = url;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -60,9 +51,8 @@ public class Song {
 
     @Override
     public String toString() {
-        return "Song{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
+        return "SongPostRequest{" +
+                "title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", url='" + url + '\'' +
                 '}';
