@@ -1,8 +1,10 @@
 package com.example.serverReto1.favourite;
 
+import java.util.List;
+
 public interface FavouriteRepository {
 
-    Favourite findById(long id);
+    List<Favourite> findByIdUser(long idUser);
     int create(Favourite favourite);
-    int deleteById(long id);
+    int deleteById(Favourite favourite);
 }

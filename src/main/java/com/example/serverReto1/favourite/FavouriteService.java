@@ -1,10 +1,12 @@
 package com.example.serverReto1.favourite;
 
+import com.example.serverReto1.song.Song;
+
 import java.util.List;
 
 public interface FavouriteService {
 
-    List<Favourite> getUserFavourites(long idUser);
+    List<Song> getUserFavourites(long idUser);
     int createFavourite(Favourite favourite);
-    int deleteFavourite(long id);
+    int deleteFavourite(Favourite favourite);
 }

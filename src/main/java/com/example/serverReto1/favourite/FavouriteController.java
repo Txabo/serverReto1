@@ -1,5 +1,6 @@
 package com.example.serverReto1.favourite;
 
+import com.example.serverReto1.song.Song;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,18 +17,18 @@ public class FavouriteController {
     FavouriteService favouriteService;
 
     @GetMapping("/favorites/{id}/user")
-    public ResponseEntity<List<Favourite>> getUserFavorites(@PathVariable("id") long idUser) {
+    public ResponseEntity<List<Song>> getUserFavorites(@PathVariable("id") long idUser) {
         return new ResponseEntity<>(favouriteService.getUserFavourites(idUser), HttpStatus.OK);
     }
 
-    @PostMapping("/favorites")
+    @PostMapping("/favorites") // TODO: ajustar ruta
     public ResponseEntity<Integer> createFavourite(@Valid @RequestBody Favourite favourite) {
-//        Department department = new Department(departmentPostRequest.getName(), departmentPostRequest.getCity());
+//        Favourite favourite = new Favourite(favourite.getIdUser(), favourite.getIdSong());
         return new ResponseEntity<>(favouriteService.createFavourite(favourite), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/favorites/{id}")
-    public ResponseEntity<Integer> deleteFavourite(@PathVariable("id") long id) {
-        return new ResponseEntity<>(favouriteService.deleteFavourite(id), HttpStatus.OK);
+    @DeleteMapping("/favorites") // TODO: ajustar ruta
+    public ResponseEntity<Integer> deleteFavourite(@RequestBody Favourite favourite) {
+        return new ResponseEntity<>(favouriteService.deleteFavourite(favourite), HttpStatus.OK);
     }
 }
