@@ -11,10 +11,10 @@ public class UserServiceImp implements UserService{
     @Autowired
     UserRepository userRepository;
     @Override
-    public int signIn(User user) {
+    public int signUp(User user) {
         //List<String> userNames = getUserNames();
         if(user.getUsername() != null && user.getUsername() != "" && user.getPassword() != null && user.getPassword() != "" && user.getEmail() != null && user.getEmail() != ""){
-            return userRepository.signIn(user);
+            return userRepository.signUp(user);
         }else{
             return 2;
         }

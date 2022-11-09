@@ -21,10 +21,10 @@ public class UserController {
     AuthenticationManager authManager;
     @Autowired
     JwtTokenUtil jwtUtil;
-    @PostMapping("/singin")
+    @PostMapping("/auth/signup")
     public ResponseEntity<?> createUser(@RequestBody @Valid User user) {
 
-        int response = userService.signIn(user);
+        int response = userService.signUp(user);
 
         if(response == 0) {
             return ResponseEntity.status(432).body("El usuario ya existe");
@@ -34,16 +34,18 @@ public class UserController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
 
     }
-    @PostMapping("/login")
+    @PostMapping("/auth/login")
     public ResponseEntity<?> login(@RequestBody @Valid AuthRequest request) {
         try {
             Authentication authentication = authManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
+                    new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
             );
+
+            System.out.println(authentication);
 
             User user = (User) authentication.getPrincipal();
             String accessToken = jwtUtil.generateAccessToken(user);
-            AuthResponse response = new AuthResponse(user.getEmail(), accessToken);
+            AuthResponse response = new AuthResponse(user.getUsername(), accessToken);
 
             return ResponseEntity.ok().body(response);
 

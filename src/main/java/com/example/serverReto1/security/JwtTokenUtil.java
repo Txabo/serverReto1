@@ -22,7 +22,7 @@ public class JwtTokenUtil {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JwtTokenUtil.class);
     // asignamos tiempo de validez del token. A partir de ahi no podra utilizarlo.
-    private static final long EXPIRE_DURATION = 30 * 24 * 60 * 60 * 1000; // 24
+    private static final long EXPIRE_DURATION = 48 * 60 * 60 * 1000; // 24
     // mas adelante veremos como actualizar sin volver a hacer login
 
     // con la siguiente linea asigna a la SECRET_KEY nuestro app.jwt.secret del application.properties
