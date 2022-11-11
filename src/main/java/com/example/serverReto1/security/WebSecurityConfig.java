@@ -8,6 +8,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -24,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 @EnableGlobalMethodSecurity(
         prePostEnabled = true
 )
+@EnableWebSecurity
 public class WebSecurityConfig {
 
     @Autowired
@@ -31,6 +33,7 @@ public class WebSecurityConfig {
 
     @Autowired
     private JwtTokenFilter jwtTokenFilter;
+
 
     // carga los detalles de usuario.
     // la validez de la contraseña es automatica. Si es incorrecta no se loguea y devuelve 401

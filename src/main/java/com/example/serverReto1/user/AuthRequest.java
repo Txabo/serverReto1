@@ -3,21 +3,23 @@ package com.example.serverReto1.user;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
+import jdk.jfr.Name;
 import org.hibernate.validator.constraints.Length;
 
 public class AuthRequest {
-    @NotNull @Email @Length(min = 5, max = 50)
-    private String email;
 
-    @NotNull @Length(min = 5, max = 10)
+    @NotNull @Length(min = 5, max = 70)
+    private String username;
+
+    @NotNull @Length(min = 5, max = 70)
     private String password;
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

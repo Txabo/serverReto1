@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -13,15 +14,18 @@ public class JdbcUserRepository implements UserRepository{
     @Autowired
     private JdbcTemplate jdbcTemplate;
     @Override
-    public int signIn(User user) {
+    public int signUp(User user) {
         try {
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            String password = passwordEncoder.encode(user.getPassword());
+
             return jdbcTemplate.update("INSERT INTO users (username, firstname, lastnames, email, password) VALUES(?, ?, ?, ?, ?)",
                     new Object[] {
                             user.getUsername(),
                             user.getFirstname(),
                             user.getLastnames(),
                             user.getEmail(),
-                            user.getPassword()
+                            password
                     }
             );
         }catch(Exception e) {

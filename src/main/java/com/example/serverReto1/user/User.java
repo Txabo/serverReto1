@@ -1,16 +1,26 @@
 package com.example.serverReto1.user;
 
+import jdk.jfr.Enabled;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
 public class User implements UserDetails {
     private int id;
+    @NotNull @Length(min = 5, max = 70)
     private String username;
+    @NotNull @Length(min = 1, max = 70)
     private String firstname;
+    @NotNull @Length(min = 1, max = 70)
     private String lastnames;
+    @NotNull @Email
+    @Length(min = 5, max = 70)
     private String email;
+    @NotNull @Length(min = 5, max = 70)
     private String password;
 
     public User(){}

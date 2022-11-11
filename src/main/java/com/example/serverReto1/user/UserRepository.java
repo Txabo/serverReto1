@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserRepository {
-    int signIn(User user);
+    int signUp(User user);
     /*List<String> getUserNames();*/
     Optional<User> findByUsername(String userName);
 }

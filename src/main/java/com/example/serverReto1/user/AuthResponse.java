@@ -2,22 +2,22 @@ package com.example.serverReto1.user;
 
 public class AuthResponse {
 
-    private String email;
+    private String username;
     private String accessToken;
 
     public AuthResponse() { }
 
-    public AuthResponse(String email, String accessToken) {
-        this.email = email;
+    public AuthResponse(String username, String accessToken) {
+        this.username = username;
         this.accessToken = accessToken;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getAccessToken() {
