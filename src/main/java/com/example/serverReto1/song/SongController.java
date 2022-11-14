@@ -1,5 +1,6 @@
 package com.example.serverReto1.song;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -56,5 +57,15 @@ public class SongController {
         return (postResponse == -1) ?
                 ResponseEntity.status(514).body("Ocurrió un error al intentar eliminar la canción") :
                 ResponseEntity.status(HttpStatus.ACCEPTED).body(postResponse);
+    }
+
+    @GetMapping("/songs_prueba")
+    public ResponseEntity<?> getSongsPrueba() {
+        List<Song> songs = new ArrayList();
+
+        for (long i = 0; i < 25; i++ ) {
+            songs.add(new Song( i + 50 , "prueba " + i, "prueba " + i, "prueba " + i));
+        }
+        return new ResponseEntity<>(songs, HttpStatus.OK);
     }
 }

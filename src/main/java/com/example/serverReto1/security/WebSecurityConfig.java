@@ -72,6 +72,7 @@ public class WebSecurityConfig {
         http.authorizeRequests()
                 .antMatchers("/api/auth/login").permitAll()
                 .antMatchers("/api/auth/signup").permitAll()
+                .antMatchers("/api/songs_prueba").permitAll()
                 .anyRequest().authenticated(); // las demás requiere autenticacion
 
         // control de la excepcion : --> Devolver Unauthorized --> 401
