@@ -21,6 +21,7 @@ public class UserController {
     AuthenticationManager authManager;
     @Autowired
     JwtTokenUtil jwtUtil;
+
     @PostMapping("/auth/signup")
     public ResponseEntity<?> createUser(@RequestBody @Valid User user) {
 
@@ -41,9 +42,8 @@ public class UserController {
                     new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
             );
 
-            System.out.println(authentication);
-
             User user = (User) authentication.getPrincipal();
+            user.setId(9);
             String accessToken = jwtUtil.generateAccessToken(user);
             AuthResponse response = new AuthResponse(user.getUsername(), accessToken);
 
@@ -55,5 +55,13 @@ public class UserController {
     }
     @GetMapping("/login")
     public ResponseEntity<?>
+
+    @GetMapping("/auth/me")
+    public ResponseEntity<?> getUserInfo(Authentication authentication) {
+
+        User userDetails = (User) authentication.getPrincipal();
+
+        return ResponseEntity.ok().body(userDetails);
+    }
 
 }
