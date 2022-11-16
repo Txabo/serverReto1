@@ -1,6 +1,7 @@
 package com.example.serverReto1.user;
 
 import com.example.serverReto1.security.JwtTokenUtil;
+import com.example.serverReto1.song.Song;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("api")
@@ -53,8 +55,11 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
-    @GetMapping("/login")
-    public ResponseEntity<?>
+    @GetMapping("/loginNoToken")
+    public Boolean loginNoToken(@RequestBody AuthRequest request){
+       return userService.logUser(request.getUsername(), request.getPassword());
+
+    }
 
     @GetMapping("/auth/me")
     public ResponseEntity<?> getUserInfo(Authentication authentication) {
