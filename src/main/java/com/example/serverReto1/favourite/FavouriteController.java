@@ -26,14 +26,25 @@ public class FavouriteController {
         return new ResponseEntity<>(favouriteService.getUserFavourites(idUser, authentication), HttpStatus.OK);
     }
 
-    @PostMapping("/favorites") // TODO: ajustar ruta
+    @GetMapping("/favoritesnotoken/{id}/user")
+    public ResponseEntity<?> getUserFavoritesNoToken(@PathVariable("id") long idUser, Authentication authentication) {
+        List<?> favouriteSongs = favouriteService.getUserFavourites(idUser, authentication);
+
+        if (favouriteSongs.get(0).equals(-1)) {
+            return ResponseEntity.status(401).body("No puedes ver favoritos de otro usuario");
+        }
+
+        return new ResponseEntity<>(favouriteService.getUserFavourites(idUser, authentication), HttpStatus.OK);
+    }
+
+    @PostMapping("/favorites")
     public ResponseEntity<Integer> createFavourite( @RequestBody Favourite favourite) {
         System.out.println(favourite);
 //        Favourite favourite = new Favourite(favourite.getIdUser(), favourite.getIdSong());
         return new ResponseEntity<>(favouriteService.createFavourite(favourite), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/favorites") // TODO: ajustar ruta
+    @DeleteMapping("/favorites")
     public ResponseEntity<Integer> deleteFavourite(@RequestBody Favourite favourite) {
         return new ResponseEntity<>(favouriteService.deleteFavourite(favourite), HttpStatus.OK);
     }
