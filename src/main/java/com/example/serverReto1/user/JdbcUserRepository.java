@@ -38,6 +38,7 @@ public class JdbcUserRepository implements UserRepository{
     public Optional<User> findByUsername(String userName) {
         try {
             User user = jdbcTemplate.queryForObject("SELECT * from users where username = ?", BeanPropertyRowMapper.newInstance(User.class), userName);
+            System.out.println(user);
             return Optional.of(user);
         } catch (EmptyResultDataAccessException e){
             e.printStackTrace();

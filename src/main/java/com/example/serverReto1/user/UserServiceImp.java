@@ -20,12 +20,4 @@ public class UserServiceImp implements UserService{
         }
 
     }
-
-    /*@Override
-    public List<String> getUserNames() {
-        List<String> userNames = new ArrayList<>();
-        userNames = userRepository.getUserNames();
-
-        return userNames;
-    }*/
 }
