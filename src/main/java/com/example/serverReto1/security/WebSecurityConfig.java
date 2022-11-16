@@ -74,6 +74,7 @@ public class WebSecurityConfig {
                 .antMatchers("/api/songsnotoken").permitAll()
                 .antMatchers("/api/favoritesnotoken/{id}/user").permitAll()
                 .antMatchers("/api/loginNoToken").permitAll()
+                .antMatchers("/api/changeUserPassword").permitAll()
                 .anyRequest().authenticated(); // las demás requiere autenticacion
 
         // control de la excepcion : --> Devolver Unauthorized --> 401

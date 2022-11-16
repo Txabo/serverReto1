@@ -4,11 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
-public class UserServiceImp implements UserService{
+public class UserServiceImpl implements UserService{
     @Autowired
     UserRepository userRepository;
     @Override
@@ -34,6 +31,12 @@ public class UserServiceImp implements UserService{
         }else{
             return false;
         }
+    }
+
+    @Override
+    public boolean changeUserPassword(PasswordPostRequest passwordPostRequest) {
+        userRepository.changeUserPassword(passwordPostRequest.getUsername(), passwordPostRequest.getOldPassword());
+        return false;
     }
 
     /*@Override

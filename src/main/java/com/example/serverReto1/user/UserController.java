@@ -55,10 +55,10 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
-    @GetMapping("/loginNoToken")
-    public Boolean loginNoToken(@RequestBody AuthRequest request){
-       return userService.logUser(request.getUsername(), request.getPassword());
 
+    @GetMapping("/loginNoToken")
+    public ResponseEntity<Boolean> loginNoToken(@RequestBody AuthRequest request){
+       return new ResponseEntity<>(userService.logUser(request.getUsername(), request.getPassword()), HttpStatus.OK);
     }
 
     @GetMapping("/auth/me")
@@ -67,6 +67,11 @@ public class UserController {
         User userDetails = (User) authentication.getPrincipal();
 
         return ResponseEntity.ok().body(userDetails);
+    }
+
+    @PostMapping("/changePassword")
+    public ResponseEntity<Boolean> changeUserPassword(@RequestBody PasswordPostRequest passwordPostRequest) {
+        return new ResponseEntity<>(userService.changeUserPassword(passwordPostRequest), HttpStatus.CREATED);
     }
 
 }
