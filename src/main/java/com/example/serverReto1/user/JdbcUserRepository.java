@@ -47,6 +47,17 @@ public class JdbcUserRepository implements UserRepository{
 
     }
 
+    @Override
+    public User findByUsernameNoToken(String userName) {
+        try{
+            User user = jdbcTemplate.queryForObject("SELECT * from users where username = ?", BeanPropertyRowMapper.newInstance(User.class), userName);
+            return user;
+        }catch(EmptyResultDataAccessException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
    /* @Override
     public List<String> getUserNames() {
         return jdbcTemplate.query("SELECT username FROM users", BeanPropertyRowMapper.newInstance(String.class));

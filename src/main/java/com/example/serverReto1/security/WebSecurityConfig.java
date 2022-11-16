@@ -43,8 +43,7 @@ public class WebSecurityConfig {
             @Override
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
                 return userRepository.findByUsername(username)
-                        .orElseThrow(
-                                () -> new UsernameNotFoundException("User " + username + " not found"));
+                        .orElseThrow(() -> new UsernameNotFoundException("User " + username + " not found"));
             }
         };
     }
@@ -75,7 +74,7 @@ public class WebSecurityConfig {
                 .antMatchers("/api/songs_prueba").permitAll()
                 .antMatchers("/api/songs").permitAll()
                 .antMatchers("/api/favorites/{id}/user").permitAll()
-                .antMatchers("/api/login").permitAll()
+                .antMatchers("/api/loginNoToken").permitAll()
                 .anyRequest().authenticated(); // las demás requiere autenticacion
 
         // control de la excepcion : --> Devolver Unauthorized --> 401
