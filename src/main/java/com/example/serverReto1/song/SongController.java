@@ -25,6 +25,16 @@ public class SongController {
             return new ResponseEntity<>(songs, HttpStatus.OK);
     }
 
+    @GetMapping("/songsnotoken")
+    public ResponseEntity<?> getSongsNoToken() {
+        List<Song> songs = songService.getAllSongs();
+
+        if (songs == null)
+            return ResponseEntity.status(513).body("No se han podido cargar las canciones");
+        else
+            return new ResponseEntity<>(songs, HttpStatus.OK);
+    }
+
     @GetMapping("/songs/{id}")
     public ResponseEntity<?> getSongById(@PathVariable("id") Long id) {
         Song song = songService.getSongById(id);

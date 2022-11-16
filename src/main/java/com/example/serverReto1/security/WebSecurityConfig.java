@@ -71,8 +71,8 @@ public class WebSecurityConfig {
         http.authorizeRequests()
                 .antMatchers("/api/auth/login").permitAll()
                 .antMatchers("/api/auth/signup").permitAll()
-                .antMatchers("/api/songs").permitAll()
-                .antMatchers("/api/favorites/{id}/user").permitAll()
+                .antMatchers("/api/songsnotoken").permitAll()
+                .antMatchers("/api/favoritesnotoken/{id}/user").permitAll()
                 .antMatchers("/api/loginNoToken").permitAll()
                 .anyRequest().authenticated(); // las demás requiere autenticacion
 
