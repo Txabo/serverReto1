@@ -4,17 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
-public class UserServiceImp implements UserService{
+public class UserServiceImpl implements UserService{
     @Autowired
     UserRepository userRepository;
     @Override
     public int signUp(User user) {
         //List<String> userNames = getUserNames();
-        if(user.getUsername() != null && user.getUsername() != "" && user.getPassword() != null && user.getPassword() != "" && user.getEmail() != null && user.getEmail() != ""){
+        if(user.getUsername() != null && !(user.getUsername().equals("")) && user.getPassword() != null
+                && !(user.getPassword().equals("")) && user.getEmail() != null && !(user.getEmail().equals(""))) {
             return userRepository.signUp(user);
         }else{
             return 2;
@@ -34,6 +32,12 @@ public class UserServiceImp implements UserService{
         }else{
             return false;
         }
+    }
+
+    @Override
+    public boolean changeUserPassword(PasswordPostRequest passwordPostRequest) {
+        User user = userRepository.changeUserPassword(passwordPostRequest.getUsername(), passwordPostRequest.getOldPassword());
+        return user != null;
     }
 
     /*@Override

@@ -1,5 +1,4 @@
 package com.example.serverReto1.user;
-import java.util.List;
 import java.util.Optional;
 
 public interface UserRepository {
@@ -7,4 +6,5 @@ public interface UserRepository {
     /*List<String> getUserNames();*/
     Optional<User> findByUsername(String userName);
     User findByUsernameNoToken(String userName);
+    User changeUserPassword(String username, String oldPassword);
 }
