@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface UserService {
     public int signUp(@Valid @RequestBody User user);
     /*public List<String> getUserNames();*/
-    public boolean logUser(@RequestBody String userName, String password);
+    public List<?> logUser(@RequestBody String userName, String password);
 }

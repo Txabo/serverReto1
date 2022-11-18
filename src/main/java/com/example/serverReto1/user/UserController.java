@@ -56,8 +56,17 @@ public class UserController {
         }
     }
     @GetMapping("/loginNoToken")
-    public Boolean loginNoToken(@RequestBody AuthRequest request){
-       return userService.logUser(request.getUsername(), request.getPassword());
+    public ResponseEntity<?> loginNoToken(@RequestBody AuthRequest request){
+        List<?> response = userService.logUser(request.getUsername(), request.getPassword());
+        if(response.get(0).equals("-1")){
+            return ResponseEntity.status(432).body("El usuario no existe");
+        }else if(response.get(0).equals("-2")){
+            return ResponseEntity.status(433).body("La contraseña es errónea");
+        }else{
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
+        }
+
+
 
     }
 
