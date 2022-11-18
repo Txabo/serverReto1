@@ -11,7 +11,8 @@ public class UserServiceImpl implements UserService{
     @Override
     public int signUp(User user) {
         //List<String> userNames = getUserNames();
-        if(user.getUsername() != null && user.getUsername() != "" && user.getPassword() != null && user.getPassword() != "" && user.getEmail() != null && user.getEmail() != ""){
+        if(user.getUsername() != null && !(user.getUsername().equals("")) && user.getPassword() != null
+                && !(user.getPassword().equals("")) && user.getEmail() != null && !(user.getEmail().equals(""))) {
             return userRepository.signUp(user);
         }else{
             return 2;
@@ -35,8 +36,8 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public boolean changeUserPassword(PasswordPostRequest passwordPostRequest) {
-        userRepository.changeUserPassword(passwordPostRequest.getUsername(), passwordPostRequest.getOldPassword());
-        return false;
+        User user = userRepository.changeUserPassword(passwordPostRequest.getUsername(), passwordPostRequest.getOldPassword());
+        return user != null;
     }
 
     /*@Override
