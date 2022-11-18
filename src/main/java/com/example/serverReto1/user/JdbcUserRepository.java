@@ -59,19 +59,12 @@ public class JdbcUserRepository implements UserRepository{
     }
 
     @Override
-    public User changeUserPassword(String username, String oldPassword) {
-        try {
-            User user = jdbcTemplate.queryForObject(
-                    "SELECT * FROM users WHERE username = ? AND password = ?",
-                    BeanPropertyRowMapper.newInstance(User.class),
-                    username,
-                    oldPassword
-            );
-            return null;
-        } catch (EmptyResultDataAccessException e) {
-            e.printStackTrace();
-            return null;
-        }
+    public int updatePassword(String username, String oldPassword) {
+        return jdbcTemplate.update(
+                "UPDATE users SET password = ? WHERE username = ?",
+                oldPassword,
+                username
+        );
     }
 
    /* @Override

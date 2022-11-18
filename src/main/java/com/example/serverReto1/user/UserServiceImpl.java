@@ -36,8 +36,8 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public boolean changeUserPassword(PasswordPostRequest passwordPostRequest) {
-        User user = userRepository.changeUserPassword(passwordPostRequest.getUsername(), passwordPostRequest.getOldPassword());
-        return user != null;
+        int queryResult = userRepository.updatePassword(passwordPostRequest.getUsername(), passwordPostRequest.getOldPassword());
+        return queryResult != 0;
     }
 
     /*@Override
