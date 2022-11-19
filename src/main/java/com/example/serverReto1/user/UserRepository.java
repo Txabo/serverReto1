@@ -6,5 +6,5 @@ public interface UserRepository {
     /*List<String> getUserNames();*/
     Optional<User> findByUsername(String userName);
     User findByUsernameNoToken(String userName);
-    int updatePassword(String username, String oldPassword);
+    int updatePassword(PasswordPostRequest passwordPostRequest);
 }

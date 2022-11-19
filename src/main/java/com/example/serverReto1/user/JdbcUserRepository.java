@@ -59,11 +59,12 @@ public class JdbcUserRepository implements UserRepository{
     }
 
     @Override
-    public int updatePassword(String username, String oldPassword) {
+    public int updatePassword(PasswordPostRequest passwordPostRequest) {
         return jdbcTemplate.update(
-                "UPDATE users SET password = ? WHERE username = ?",
-                oldPassword,
-                username
+                "UPDATE users SET password = ? WHERE username = ? AND password = ?",
+                passwordPostRequest.getNewPassword(),
+                passwordPostRequest.getUsername(),
+                passwordPostRequest.getOldPassword()
         );
     }
 
