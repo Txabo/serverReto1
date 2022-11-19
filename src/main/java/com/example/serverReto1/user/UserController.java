@@ -43,7 +43,6 @@ public class UserController {
             );
 
             User user = (User) authentication.getPrincipal();
-            user.setId(9);
             String accessToken = jwtUtil.generateAccessToken(user);
             AuthResponse response = new AuthResponse(user.getUsername(), accessToken);
 
