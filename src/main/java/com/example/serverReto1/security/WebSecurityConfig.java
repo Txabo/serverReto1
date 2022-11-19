@@ -71,7 +71,7 @@ public class WebSecurityConfig {
         http.authorizeRequests()
                 .antMatchers("/api/auth/login").permitAll()
                 .antMatchers("/api/auth/signup").permitAll()
-                .antMatchers("/api/changeUserPassword").permitAll()
+                .antMatchers("/api/changeuserpassword").permitAll()
                 .antMatchers("/api/loginNoToken").permitAll()
                 .antMatchers("/api/songsnotoken").permitAll()
                 .antMatchers("/api/favoritesnotoken/{id}/user").permitAll()

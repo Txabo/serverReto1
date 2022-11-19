@@ -42,6 +42,7 @@ public class UserServiceImpl implements UserService{
         User user = userRepository.findByUsernameNoToken(passwordPostRequest.getUsername());
         int queryResult = 0;
         if (user != null && passwordEncoder.matches(passwordPostRequest.getOldPassword(), user.getPassword())) {
+            passwordPostRequest.setOldPassword(user.getPassword());
             passwordPostRequest.setNewPassword(encodedNewPassword);
             queryResult = userRepository.updatePassword(passwordPostRequest);
         }
