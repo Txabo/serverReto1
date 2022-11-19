@@ -1,9 +1,7 @@
 package com.example.serverReto1.user;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
-import jdk.jfr.Name;
 import org.hibernate.validator.constraints.Length;
 
 public class AuthRequest {

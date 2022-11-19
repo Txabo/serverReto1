@@ -36,8 +36,16 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public boolean changeUserPassword(PasswordPostRequest passwordPostRequest) {
-        User user = userRepository.changeUserPassword(passwordPostRequest.getUsername(), passwordPostRequest.getOldPassword());
-        return user != null;
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedNewPassword = passwordEncoder.encode(passwordPostRequest.getNewPassword());
+
+        User user = userRepository.findByUsernameNoToken(passwordPostRequest.getUsername());
+        int queryResult = 0;
+        if (user != null && passwordEncoder.matches(passwordPostRequest.getOldPassword(), user.getPassword())) {
+            passwordPostRequest.setNewPassword(encodedNewPassword);
+            queryResult = userRepository.updatePassword(passwordPostRequest);
+        }
+        return queryResult != 0;
     }
 
     /*@Override
