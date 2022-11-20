@@ -16,6 +16,7 @@ import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
+import javax.xml.bind.DatatypeConverter;
 
 @Component
 public class JwtTokenUtil {
