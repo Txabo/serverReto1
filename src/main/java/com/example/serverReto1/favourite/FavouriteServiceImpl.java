@@ -39,6 +39,17 @@ public class FavouriteServiceImpl implements FavouriteService {
     }
 
     @Override
+    public List<Song> getUserFavouritesNoToken(long idUser) {
+        List<Song> favouriteSongs = new ArrayList<>();
+
+        List<Favourite> favourites = favouriteRepository.findByIdUser(idUser);
+        for (Favourite favourite : favourites) {
+            favouriteSongs.add(songService.getSongById(favourite.getIdSong()));
+        }
+        return favouriteSongs;
+    }
+
+    @Override
     public int createFavourite(Favourite favourite) {
 //        favourite.setId(1L);
         return favouriteRepository.create(favourite);
