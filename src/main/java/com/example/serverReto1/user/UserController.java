@@ -11,6 +11,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("api")
@@ -53,9 +55,17 @@ public class UserController {
         }
     }
 
-    @GetMapping("/loginNoToken")
-    public ResponseEntity<Boolean> loginNoToken(@RequestBody AuthRequest request){
-       return new ResponseEntity<>(userService.logUser(request.getUsername(), request.getPassword()), HttpStatus.OK);
+    @PostMapping("/loginNoToken")
+    public ResponseEntity<List<String>> loginNoToken(@RequestBody AuthRequest request){
+        List<String> response = userService.logUser(request.getUsername(), request.getPassword());
+        System.out.println(response);
+        if(response.get(0).equals("-1")){
+            return ResponseEntity.status(432).build();
+        }else if(response.get(0).equals("-2")){
+            return ResponseEntity.status(433).build();
+        }else{
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
+        }
     }
 
     @GetMapping("/auth/me")

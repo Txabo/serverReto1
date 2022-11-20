@@ -50,10 +50,10 @@ public class JdbcUserRepository implements UserRepository{
     @Override
     public User findByUsernameNoToken(String userName) {
         try{
-            User user = jdbcTemplate.queryForObject("SELECT * from users where username = ?", BeanPropertyRowMapper.newInstance(User.class), userName);
+            User user = jdbcTemplate.queryForObject("SELECT * FROM users WHERE username = ?", BeanPropertyRowMapper.newInstance(User.class), userName);
+            System.out.println(user.toString());
             return user;
         }catch(EmptyResultDataAccessException e){
-            e.printStackTrace();
             return null;
         }
     }
