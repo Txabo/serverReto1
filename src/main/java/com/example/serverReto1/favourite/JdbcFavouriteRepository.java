@@ -15,12 +15,12 @@ public class JdbcFavouriteRepository implements FavouriteRepository {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<Favourite> findByIdUser(long idUser) {
+    public List<Favourite> findByIdUser(long iduser) {
         try {
             return jdbcTemplate.query(
-                    "SELECT IdSong FROM favourites WHERE idUser = ?",
+                    "SELECT idsong FROM favourites WHERE iduser = ?",
                     BeanPropertyRowMapper.newInstance(Favourite.class),
-                    idUser
+                    iduser
             );
         } catch (IncorrectResultSizeDataAccessException e) {
             return null;
@@ -29,15 +29,16 @@ public class JdbcFavouriteRepository implements FavouriteRepository {
 
     @Override
     public int create(Favourite favourite) {
-        return jdbcTemplate.update("INSERT INTO favourites (idSong, idUser) VALUES (?, ?)",
-                favourite.getIdSong(), favourite.getIdUser()
+        return jdbcTemplate.update("INSERT INTO favourites (iduser, idsong) VALUES (?, ?)",
+                favourite.getIduser(),
+                favourite.getIdsong()
         );
     }
 
     @Override
     public int deleteById(Favourite favourite) {
-        return jdbcTemplate.update("DELETE FROM favourites WHERE idSong = ? AND idUser = ?",
-                favourite.getIdSong(), favourite.getIdUser()
+        return jdbcTemplate.update("DELETE FROM favourites WHERE idsong = ? AND iduser = ?",
+                favourite.getIdsong(), favourite.getIduser()
         );
     }
 }

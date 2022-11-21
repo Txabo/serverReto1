@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface FavouriteService {
 
-    List<?> getUserFavourites(long idUser, Authentication authentication);
-    List<Song> getUserFavouritesNoToken(long idUser);
+    List<?> getUserFavourites(long iduser, Authentication authentication);
+    List<Song> getUserFavouritesNoToken(long iduser);
     int createFavourite(Favourite favourite);
     int deleteFavourite(Favourite favourite);
 }

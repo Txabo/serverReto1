@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface FavouriteRepository {
 
-    List<Favourite> findByIdUser(long idUser);
+    List<Favourite> findByIdUser(long iduser);
     int create(Favourite favourite);
     int deleteById(Favourite favourite);
 }
