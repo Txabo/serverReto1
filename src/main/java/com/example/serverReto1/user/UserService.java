@@ -11,4 +11,5 @@ public interface UserService {
     /*List<String> getUserNames();*/
     List<String> logUser(@RequestBody String userName, String password);
     boolean changeUserPassword(PasswordPostRequest passwordPostRequest);
+    int changeUserPasswordNoToken(PasswordPostRequest passwordPostRequest);
 }

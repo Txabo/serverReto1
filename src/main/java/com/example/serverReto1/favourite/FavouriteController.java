@@ -34,12 +34,31 @@ public class FavouriteController {
 
     @PostMapping("/favorites")
     public ResponseEntity<Integer> createFavourite( @RequestBody Favourite favourite) {
-        System.out.println(favourite);
-        return new ResponseEntity<>(favouriteService.createFavourite(favourite), HttpStatus.CREATED);
+        int response = favouriteService.createFavourite(favourite);
+
+        if (response == 0)
+            return ResponseEntity.status(512).build();
+        else
+            return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/favorites")
+    @PostMapping("/favoritesNoToken")
+    public ResponseEntity<Integer> createFavouriteNoToken( @RequestBody Favourite favourite) {
+        int response = favouriteService.createFavourite(favourite);
+
+        if (response == 0)
+            return ResponseEntity.status(512).build();
+        else
+            return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/favoritesNoToken")
     public ResponseEntity<Integer> deleteFavourite(@RequestBody Favourite favourite) {
-        return new ResponseEntity<>(favouriteService.deleteFavourite(favourite), HttpStatus.OK);
+        int response = favouriteService.deleteFavourite(favourite);
+
+        if (response == 0)
+            return ResponseEntity.status(512).build();
+        else
+            return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }
 }

@@ -78,7 +78,21 @@ public class UserController {
 
     @PostMapping("/changeuserpassword")
     public ResponseEntity<Boolean> changeUserPassword(@RequestBody PasswordPostRequest passwordPostRequest) {
-        return new ResponseEntity<>(userService.changeUserPassword(passwordPostRequest), HttpStatus.CREATED);
+        return new ResponseEntity<>(userService.changeUserPassword(passwordPostRequest), HttpStatus.ACCEPTED);
+    }
+
+    @PostMapping("/changePasswordNoToken")
+    public ResponseEntity<Integer> changeUserPasswordNoToken(@RequestBody PasswordPostRequest passwordPostRequest) {
+        int passwordChanged = userService.changeUserPasswordNoToken(passwordPostRequest);
+
+        if(passwordChanged == -1) {
+            return ResponseEntity.status(432).build();
+        }else if(passwordChanged == -2) {
+            return ResponseEntity.status(433).build();
+        }else{
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(passwordChanged);
+        }
+
     }
 
 }

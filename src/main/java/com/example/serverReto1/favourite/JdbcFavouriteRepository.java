@@ -29,7 +29,7 @@ public class JdbcFavouriteRepository implements FavouriteRepository {
 
     @Override
     public int create(Favourite favourite) {
-        return jdbcTemplate.update("INSERT INTO favourites (idSong, idUser) VALUES (?, ?)",
+        return jdbcTemplate.update("INSERT INTO favourites (idsong, iduser) VALUES (?, ?)",
                 favourite.getIdSong(), favourite.getIdUser()
         );
     }

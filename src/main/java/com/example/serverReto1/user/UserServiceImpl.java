@@ -61,12 +61,25 @@ public class UserServiceImpl implements UserService{
         return queryResult != 0;
     }
 
-    /*@Override
-    public List<String> getUserNames() {
-        List<String> userNames = new ArrayList<>();
-        userNames = userRepository.getUserNames();
+    @Override
+    public int changeUserPasswordNoToken(PasswordPostRequest passwordPostRequest) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedNewPassword = passwordEncoder.encode(passwordPostRequest.getNewPassword());
 
-        return userNames;
-    }*/
+
+        User user = userRepository.findByUsernameNoToken(passwordPostRequest.getUsername());
+        if (user == null) return -1;
+
+        int queryResult = 0;
+
+        if (user != null && passwordEncoder.matches(passwordPostRequest.getOldPassword(), user.getPassword())) {
+            passwordPostRequest.setOldPassword(user.getPassword());
+            passwordPostRequest.setNewPassword(encodedNewPassword);
+            queryResult = userRepository.updatePassword(passwordPostRequest);
+            return queryResult;
+        }
+        else
+            return -2;
+    }
 
 }
