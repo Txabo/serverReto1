@@ -54,7 +54,7 @@ public class SongController {
     }
 
     @PutMapping("/songs/{id}")
-    public ResponseEntity<?> updateEmployee(@PathVariable("id") Long id, @RequestBody SongPostRequest songPostRequest) {
+    public ResponseEntity<?> updateSong(@PathVariable("id") Long id, @RequestBody SongPostRequest songPostRequest) {
         int postResponse = songService.updateSong(songPostRequest, id);
         return (postResponse == -1) ?
                 ResponseEntity.status(514).body("Ocurrió un error al actualizar la canción") :
@@ -62,7 +62,7 @@ public class SongController {
     }
 
     @DeleteMapping("/songs/{id}")
-    public ResponseEntity<?> deleteEmployee(@PathVariable("id") Long id) {
+    public ResponseEntity<?> deleteSong(@PathVariable("id") Long id) {
         int postResponse = songService.deleteSong(id);
         return (postResponse == -1) ?
                 ResponseEntity.status(514).body("Ocurrió un error al intentar eliminar la canción") :

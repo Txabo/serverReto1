@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService{
     @Autowired
@@ -14,16 +17,25 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public boolean logUser(String userName, String password) {
+    public List<String> logUser(String userName, String password) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        List<String> response = new ArrayList<>();
         User user;
+
         user = userRepository.findByUsernameNoToken(userName);
         System.out.println(password);
-        System.out.println(user.getPassword());
-        if(passwordEncoder.matches(password, user.getPassword())){
-            return true;
-        }else{
-            return false;
+
+        if(user == null){
+            response.add("-1");
+            return response;
+        } else if(passwordEncoder.matches(password, user.getPassword())){
+            response.add("" + user.getIduser());
+            response.add(user.getUsername());
+            System.out.println(response);
+            return response;
+        }else {
+            response.add("-2");
+            return response;
         }
     }
 

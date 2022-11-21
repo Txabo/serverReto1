@@ -26,13 +26,12 @@ public class FavouriteServiceImpl implements FavouriteService {
         List<Song> favouriteSongs = new ArrayList<>();
 
         User userDetails = (User) authentication.getPrincipal();
-        if (userDetails.getId() == iduser) {
-            List<Favourite> favourites = favouriteRepository.findByIdUser(iduser);
+        if (userDetails.getIduser() == iduser) {
+            List<Favourite> favourites = favouriteRepository.findByIdUser(idUser);
             for (Favourite favourite : favourites) {
                 favouriteSongs.add(songService.getSongById(favourite.getIdsong()));
             }
             return favouriteSongs;
-
         } else {
             return Arrays.asList(-1);
         }
