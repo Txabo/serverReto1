@@ -1,4 +1,4 @@
-package com.example.serverReto1.user;
+package com.example.serverReto1.user.model;
 
 import org.hibernate.validator.constraints.Length;
 

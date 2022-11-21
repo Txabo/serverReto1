@@ -1,6 +1,8 @@
-package com.example.serverReto1.favourite;
+package com.example.serverReto1.favourite.controller;
 
-import com.example.serverReto1.song.Song;
+import com.example.serverReto1.favourite.model.Favourite;
+import com.example.serverReto1.favourite.service.FavouriteService;
+import com.example.serverReto1.song.model.Song;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +22,7 @@ public class FavouriteController {
     public ResponseEntity<?> getUserFavorites(@PathVariable("id") long iduser, Authentication authentication) {
         List<?> favouriteSongs = favouriteService.getUserFavourites(iduser, authentication);
 
-        if (favouriteSongs.get(0).equals(-1)) {
+        if (favouriteSongs.size() > 0 && favouriteSongs.get(0).equals(-1)) {
             return ResponseEntity.status(401).body("No puedes ver favoritos de otro usuario");
         }
 

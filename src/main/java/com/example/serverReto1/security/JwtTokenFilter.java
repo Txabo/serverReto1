@@ -1,6 +1,6 @@
 package com.example.serverReto1.security;
 
-import com.example.serverReto1.user.User;
+import com.example.serverReto1.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

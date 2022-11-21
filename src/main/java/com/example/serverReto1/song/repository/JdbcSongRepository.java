@@ -1,5 +1,6 @@
-package com.example.serverReto1.song;
+package com.example.serverReto1.song.repository;
 
+import com.example.serverReto1.song.model.Song;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;

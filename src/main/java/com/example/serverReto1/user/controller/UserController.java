@@ -1,6 +1,11 @@
-package com.example.serverReto1.user;
+package com.example.serverReto1.user.controller;
 
 import com.example.serverReto1.security.JwtTokenUtil;
+import com.example.serverReto1.user.model.AuthRequest;
+import com.example.serverReto1.user.model.AuthResponse;
+import com.example.serverReto1.user.model.PasswordPostRequest;
+import com.example.serverReto1.user.model.User;
+import com.example.serverReto1.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +16,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -56,7 +60,7 @@ public class UserController {
     @PostMapping("/loginNoToken")
     public ResponseEntity<List<String>> loginNoToken(@RequestBody AuthRequest request){
         List<String> response = userService.logUser(request.getUsername(), request.getPassword());
-        System.out.println(response);
+
         if(response.get(0).equals("-1")){
             return ResponseEntity.status(432).build();
         }else if(response.get(0).equals("-2")){

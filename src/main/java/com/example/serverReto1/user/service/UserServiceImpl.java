@@ -1,5 +1,8 @@
-package com.example.serverReto1.user;
+package com.example.serverReto1.user.service;
 
+import com.example.serverReto1.user.model.PasswordPostRequest;
+import com.example.serverReto1.user.model.User;
+import com.example.serverReto1.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,7 +26,7 @@ public class UserServiceImpl implements UserService{
         User user;
 
         user = userRepository.findByUsernameNoToken(userName);
-        System.out.println(password);
+
 
         if(user == null){
             response.add("-1");
@@ -31,7 +34,7 @@ public class UserServiceImpl implements UserService{
         } else if(passwordEncoder.matches(password, user.getPassword())){
             response.add("" + user.getId());
             response.add(user.getUsername());
-            System.out.println(response);
+
             return response;
         }else {
             response.add("-2");

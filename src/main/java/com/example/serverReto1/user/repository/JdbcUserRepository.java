@@ -1,5 +1,7 @@
-package com.example.serverReto1.user;
+package com.example.serverReto1.user.repository;
 
+import com.example.serverReto1.user.model.PasswordPostRequest;
+import com.example.serverReto1.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -29,7 +31,6 @@ public class JdbcUserRepository implements UserRepository{
                     }
             );
         }catch(Exception e) {
-            System.out.println("Something went very wrong");
             return 0;
         }
     }
@@ -38,7 +39,7 @@ public class JdbcUserRepository implements UserRepository{
     public Optional<User> findByUsername(String userName) {
         try {
             User user = jdbcTemplate.queryForObject("SELECT * from users where username = ?", BeanPropertyRowMapper.newInstance(User.class), userName);
-            System.out.println(user);
+
             return Optional.of(user);
         } catch (EmptyResultDataAccessException e){
             e.printStackTrace();
@@ -51,7 +52,7 @@ public class JdbcUserRepository implements UserRepository{
     public User findByUsernameNoToken(String userName) {
         try{
             User user = jdbcTemplate.queryForObject("SELECT * FROM users WHERE username = ?", BeanPropertyRowMapper.newInstance(User.class), userName);
-            System.out.println(user.toString());
+
             return user;
         }catch(EmptyResultDataAccessException e){
             return null;

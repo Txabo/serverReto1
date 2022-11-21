@@ -1,4 +1,7 @@
-package com.example.serverReto1.user;
+package com.example.serverReto1.user.repository;
+import com.example.serverReto1.user.model.PasswordPostRequest;
+import com.example.serverReto1.user.model.User;
+
 import java.util.Optional;
 
 public interface UserRepository {

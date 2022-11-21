@@ -1,6 +1,6 @@
 package com.example.serverReto1.security;
 
-import com.example.serverReto1.user.UserRepository;
+import com.example.serverReto1.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

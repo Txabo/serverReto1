@@ -1,4 +1,7 @@
-package com.example.serverReto1.song;
+package com.example.serverReto1.song.service;
+
+import com.example.serverReto1.song.model.Song;
+import com.example.serverReto1.song.model.SongPostRequest;
 
 import java.util.List;
 

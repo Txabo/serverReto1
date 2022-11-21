@@ -1,8 +1,10 @@
-package com.example.serverReto1.favourite;
+package com.example.serverReto1.favourite.service;
 
-import com.example.serverReto1.song.Song;
-import com.example.serverReto1.song.SongService;
-import com.example.serverReto1.user.User;
+import com.example.serverReto1.favourite.model.Favourite;
+import com.example.serverReto1.favourite.repository.FavouriteRepository;
+import com.example.serverReto1.song.model.Song;
+import com.example.serverReto1.song.service.SongService;
+import com.example.serverReto1.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;

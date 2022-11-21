@@ -1,6 +1,7 @@
-package com.example.serverReto1.favourite;
+package com.example.serverReto1.favourite.service;
 
-import com.example.serverReto1.song.Song;
+import com.example.serverReto1.favourite.model.Favourite;
+import com.example.serverReto1.song.model.Song;
 import org.springframework.security.core.Authentication;
 
 import java.util.List;

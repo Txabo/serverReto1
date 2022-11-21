@@ -1,5 +1,8 @@
-package com.example.serverReto1.song;
+package com.example.serverReto1.song.service;
 
+import com.example.serverReto1.song.model.Song;
+import com.example.serverReto1.song.model.SongPostRequest;
+import com.example.serverReto1.song.repository.SongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

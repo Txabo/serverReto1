@@ -1,5 +1,6 @@
-package com.example.serverReto1.favourite;
+package com.example.serverReto1.favourite.repository;
 
+import com.example.serverReto1.favourite.model.Favourite;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;

@@ -1,4 +1,4 @@
-package com.example.serverReto1.song;
+package com.example.serverReto1.song.model;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;

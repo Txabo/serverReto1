@@ -1,4 +1,4 @@
-package com.example.serverReto1.favourite;
+package com.example.serverReto1.favourite.model;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
