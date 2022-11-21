@@ -29,10 +29,8 @@ public class UserController {
 
         int response = userService.signUp(user);
 
-        if(response == 0) {
+        if (response == 0) {
             return ResponseEntity.status(432).body("El usuario ya existe");
-        }else if(response == 2){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(response, HttpStatus.CREATED);
 

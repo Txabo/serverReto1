@@ -13,14 +13,7 @@ public class UserServiceImpl implements UserService{
     UserRepository userRepository;
     @Override
     public int signUp(User user) {
-        //List<String> userNames = getUserNames();
-        if(user.getUsername() != null && !(user.getUsername().equals("")) && user.getPassword() != null
-                && !(user.getPassword().equals("")) && user.getEmail() != null && !(user.getEmail().equals(""))) {
-            return userRepository.signUp(user);
-        }else{
-            return 2;
-        }
-
+        return userRepository.signUp(user);
     }
 
     @Override
@@ -36,7 +29,7 @@ public class UserServiceImpl implements UserService{
             response.add("-1");
             return response;
         } else if(passwordEncoder.matches(password, user.getPassword())){
-            response.add("" + user.getIduser());
+            response.add("" + user.getId());
             response.add(user.getUsername());
             System.out.println(response);
             return response;
