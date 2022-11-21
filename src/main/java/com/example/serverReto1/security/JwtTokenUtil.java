@@ -32,7 +32,7 @@ public class JwtTokenUtil {
     public String generateAccessToken(User user) {
         // cuando generamos el token podemos meter campos custom que nos puedan ser utiles mas adelante.
         return Jwts.builder()
-                .setSubject(String.format("%s,%s", user.getIduser(), user.getEmail()))
+                .setSubject(String.format("%s,%s", user.getId(), user.getEmail()))
                 .setIssuer("ADTDAM")
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRE_DURATION))

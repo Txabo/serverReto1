@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
 public class User implements UserDetails {
-    private int iduser;
+    private int id;
     @NotNull @Length(min = 5, max = 70)
     private String username;
     @NotNull @Length(min = 1, max = 70)
@@ -41,8 +41,8 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public User(int iduser, String username, String firstname, String lastnames, String email, String password) {
-        this.iduser = iduser;
+    public User(int id, String username, String firstname, String lastnames, String email, String password) {
+        this.id = this.id;
         this.username = username;
         this.firstname = firstname;
         this.lastnames = lastnames;
@@ -72,12 +72,12 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
     }
-    public int getIduser() {
-        return iduser;
+    public int getId() {
+        return id;
     }
 
-    public void setIduser(int id) {
-        this.iduser = id;
+    public void setId(int id) {
+        this.id = id;
     }
 
 
@@ -126,7 +126,7 @@ public class User implements UserDetails {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + iduser +
+                "id=" + id +
                 ", username='" + username + '\'' +
                 ", firstname='" + firstname + '\'' +
                 ", lastnames='" + lastnames + '\'' +

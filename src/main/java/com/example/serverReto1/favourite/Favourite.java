@@ -18,16 +18,8 @@ public class Favourite {
     public Favourite() {
     }
 
-    public Favourite(Long idsong, Long iduser) {
-        this.idsong = idsong;
+    public Favourite(Long iduser, Long idsong) {
         this.iduser = iduser;
-    }
-
-    public Long getIdsong() {
-        return idsong;
-    }
-
-    public void setIdsong(Long idsong) {
         this.idsong = idsong;
     }
 
@@ -39,11 +31,19 @@ public class Favourite {
         this.iduser = iduser;
     }
 
+    public Long getIdsong() {
+        return idsong;
+    }
+
+    public void setIdsong(Long idsong) {
+        this.idsong = idsong;
+    }
+
     @Override
     public String toString() {
         return "Favourite{" +
-                "idSong=" + idsong +
-                ", idUser=" + iduser +
+                "iduser=" + iduser +
+                ", idsong=" + idsong +
                 '}';
     }
 }

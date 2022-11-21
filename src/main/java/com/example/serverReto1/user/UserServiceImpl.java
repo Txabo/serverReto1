@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService{
             response.add("-1");
             return response;
         } else if(passwordEncoder.matches(password, user.getPassword())){
-            response.add("" + user.getIduser());
+            response.add("" + user.getId());
             response.add(user.getUsername());
             System.out.println(response);
             return response;

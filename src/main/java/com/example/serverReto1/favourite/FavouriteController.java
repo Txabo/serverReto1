@@ -17,19 +17,19 @@ public class FavouriteController {
     FavouriteService favouriteService;
 
     @GetMapping("/favorites/{id}/user")
-    public ResponseEntity<?> getUserFavorites(@PathVariable("id") long idUser, Authentication authentication) {
-        List<?> favouriteSongs = favouriteService.getUserFavourites(idUser, authentication);
+    public ResponseEntity<?> getUserFavorites(@PathVariable("id") long iduser, Authentication authentication) {
+        List<?> favouriteSongs = favouriteService.getUserFavourites(iduser, authentication);
 
         if (favouriteSongs.get(0).equals(-1)) {
             return ResponseEntity.status(401).body("No puedes ver favoritos de otro usuario");
         }
 
-        return new ResponseEntity<>(favouriteService.getUserFavourites(idUser, authentication), HttpStatus.OK);
+        return new ResponseEntity<>(favouriteService.getUserFavourites(iduser, authentication), HttpStatus.OK);
     }
 
     @GetMapping("/favoritesnotoken/{id}/user")
-    public ResponseEntity<List<Song>> getUserFavoritesNoToken(@PathVariable("id") long idUser) {
-        return new ResponseEntity<>(favouriteService.getUserFavouritesNoToken(idUser), HttpStatus.OK);
+    public ResponseEntity<List<Song>> getUserFavoritesNoToken(@PathVariable("id") long iduser) {
+        return new ResponseEntity<>(favouriteService.getUserFavouritesNoToken(iduser), HttpStatus.OK);
     }
 
     @PostMapping("/favorites")
