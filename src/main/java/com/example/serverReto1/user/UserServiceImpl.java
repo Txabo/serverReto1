@@ -10,14 +10,7 @@ public class UserServiceImpl implements UserService{
     UserRepository userRepository;
     @Override
     public int signUp(User user) {
-        //List<String> userNames = getUserNames();
-        if(user.getUsername() != null && !(user.getUsername().equals("")) && user.getPassword() != null
-                && !(user.getPassword().equals("")) && user.getEmail() != null && !(user.getEmail().equals(""))) {
-            return userRepository.signUp(user);
-        }else{
-            return 2;
-        }
-
+        return userRepository.signUp(user);
     }
 
     @Override

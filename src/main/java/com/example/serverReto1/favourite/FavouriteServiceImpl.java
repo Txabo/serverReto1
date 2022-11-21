@@ -22,14 +22,14 @@ public class FavouriteServiceImpl implements FavouriteService {
 
 
     @Override
-    public List<?> getUserFavourites(long idUser, Authentication authentication) {
+    public List<?> getUserFavourites(long iduser, Authentication authentication) {
         List<Song> favouriteSongs = new ArrayList<>();
 
         User userDetails = (User) authentication.getPrincipal();
-        if (userDetails.getId() == idUser) {
-            List<Favourite> favourites = favouriteRepository.findByIdUser(idUser);
+        if (userDetails.getId() == iduser) {
+            List<Favourite> favourites = favouriteRepository.findByIdUser(iduser);
             for (Favourite favourite : favourites) {
-                favouriteSongs.add(songService.getSongById(favourite.getIdSong()));
+                favouriteSongs.add(songService.getSongById(favourite.getIdsong()));
             }
             return favouriteSongs;
 
@@ -39,19 +39,18 @@ public class FavouriteServiceImpl implements FavouriteService {
     }
 
     @Override
-    public List<Song> getUserFavouritesNoToken(long idUser) {
+    public List<Song> getUserFavouritesNoToken(long iduser) {
         List<Song> favouriteSongs = new ArrayList<>();
 
-        List<Favourite> favourites = favouriteRepository.findByIdUser(idUser);
+        List<Favourite> favourites = favouriteRepository.findByIdUser(iduser);
         for (Favourite favourite : favourites) {
-            favouriteSongs.add(songService.getSongById(favourite.getIdSong()));
+            favouriteSongs.add(songService.getSongById(favourite.getIdsong()));
         }
         return favouriteSongs;
     }
 
     @Override
     public int createFavourite(Favourite favourite) {
-//        favourite.setId(1L);
         return favouriteRepository.create(favourite);
     }
 

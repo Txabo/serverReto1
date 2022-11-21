@@ -9,41 +9,41 @@ public class Favourite {
     @NotNull
     @NotEmpty
     @NotBlank
-    private Long idSong;
+    private Long iduser;
     @NotNull
     @NotEmpty
     @NotBlank
-    private Long idUser;
+    private Long idsong;
 
     public Favourite() {
     }
 
-    public Favourite(Long idSong, Long idUser) {
-        this.idSong = idSong;
-        this.idUser = idUser;
+    public Favourite(Long idsong, Long iduser) {
+        this.idsong = idsong;
+        this.iduser = iduser;
     }
 
-    public Long getIdSong() {
-        return idSong;
+    public Long getIdsong() {
+        return idsong;
     }
 
-    public void setIdSong(Long idSong) {
-        this.idSong = idSong;
+    public void setIdsong(Long idsong) {
+        this.idsong = idsong;
     }
 
-    public Long getIdUser() {
-        return idUser;
+    public Long getIduser() {
+        return iduser;
     }
 
-    public void setIdUser(Long idUser) {
-        this.idUser = idUser;
+    public void setIduser(Long iduser) {
+        this.iduser = iduser;
     }
 
     @Override
     public String toString() {
         return "Favourite{" +
-                "idSong=" + idSong +
-                ", idUser=" + idUser +
+                "idSong=" + idsong +
+                ", idUser=" + iduser +
                 '}';
     }
 }
