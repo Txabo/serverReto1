@@ -27,7 +27,7 @@ public class FavouriteServiceImpl implements FavouriteService {
 
         User userDetails = (User) authentication.getPrincipal();
         if (userDetails.getIduser() == iduser) {
-            List<Favourite> favourites = favouriteRepository.findByIdUser(idUser);
+            List<Favourite> favourites = favouriteRepository.findByIdUser(iduser);
             for (Favourite favourite : favourites) {
                 favouriteSongs.add(songService.getSongById(favourite.getIdsong()));
             }
